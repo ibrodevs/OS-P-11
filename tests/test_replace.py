@@ -1,5 +1,6 @@
 """Запуск: python -m unittest discover -s tests -v"""
 import unittest
+from functools import lru_cache
 from random import Random
 
 from replace import ALGORITHMS, BELADY_REFS, CONTROL_REFS, clock, fifo, lru, optimal
@@ -59,6 +60,50 @@ class ReplacementTests(unittest.TestCase):
             for fn in (lru, optimal):
                 faults = [fn(refs, n).faults for n in range(1, 9)]
                 self.assertEqual(faults, sorted(faults, reverse=True))
+
+    def test_step_invariants_on_random_references(self):
+        rng = Random(11011)
+        for _ in range(70):
+            refs = [rng.randrange(6) for _ in range(rng.randrange(0, 35))]
+            n = rng.randrange(1, 7)
+            for algorithm in ALGORITHMS.values():
+                result = algorithm(refs, n)
+                self.assertEqual(len(result.steps), len(refs))
+                self.assertEqual(result.faults, sum(not s.hit for s in result.steps))
+                self.assertEqual(result.faults + result.hits, len(refs))
+                prior = set()
+                for step in result.steps:
+                    current = {x for x in step.frames if x is not None}
+                    self.assertEqual(len(current), len([x for x in step.frames if x is not None]))
+                    self.assertLessEqual(len(current), n)
+                    self.assertEqual(step.hit, step.page in prior)
+                    self.assertIn(step.page, current)
+                    if step.hit:
+                        self.assertEqual(current, prior)
+                        self.assertIsNone(step.evicted)
+                    else:
+                        self.assertEqual(current - {step.page}, prior - ({step.evicted} if step.evicted is not None else set()))
+                    prior = current
+
+    def test_optimal_matches_independent_dynamic_programming(self):
+        def exhaustive_optimum(refs, n):
+            @lru_cache(None)
+            def solve(i, resident):
+                if i == len(refs):
+                    return 0
+                page = refs[i]
+                if page in resident:
+                    return solve(i + 1, resident)
+                if len(resident) < n:
+                    return 1 + solve(i + 1, tuple(sorted((*resident, page))))
+                return 1 + min(solve(i + 1, tuple(sorted((set(resident) - {v}) | {page}))) for v in resident)
+            return solve(0, ())
+
+        rng = Random(730)
+        for _ in range(120):
+            refs = tuple(rng.randrange(5) for _ in range(rng.randrange(1, 11)))
+            frames = rng.randrange(1, 5)
+            self.assertEqual(optimal(refs, frames).faults, exhaustive_optimum(refs, frames))
 
     def test_deterministic_generators(self):
         self.assertEqual(generate_locality(seed=42), generate_locality(seed=42))

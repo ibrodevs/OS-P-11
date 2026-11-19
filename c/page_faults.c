@@ -121,6 +121,10 @@ int main(int argc, char **argv) {
         check(zeros != NULL, "calloc write buffer");
         for (size_t at = 0; at < length; at += chunk) {
             size_t to_write = length - at < chunk ? length - at : chunk;
+            /* Each page starts with a reproducible nonzero byte so checksums
+               can validate which pages were actually accessed. */
+            for (size_t j = 0; j < to_write; j += (size_t)system_page)
+                zeros[j] = (unsigned char)(1 + ((at + j) / (size_t)system_page) % 251);
             ssize_t wrote = pwrite(fd, zeros, to_write, (off_t)at);
             check(wrote == (ssize_t)to_write, "pwrite test data");
         }
@@ -152,11 +156,17 @@ int main(int argc, char **argv) {
     for (long p = 1; p <= passes; ++p) {
         Snapshot before = snapshot();
         const size_t hot = npages / 8 ? npages / 8 : 1;
+        const size_t cold = npages - hot;
         for (size_t i = 0; i < npages; ++i) {
             size_t page = i;
             if (!strcmp(pattern, "random")) page = permutation[i];
-            else if (!strcmp(pattern, "local"))
-                page = (i % 10 < 9) ? ((i / 10) % hot) : ((i / 10) % npages);
+            else if (!strcmp(pattern, "local")) {
+                /* Nine in ten accesses target hot pages; the tenth always
+                   targets a page OUTSIDE the hot set (when one exists).
+                   Previous code accidentally kept all pages in hot set. */
+                page = (i % 10 < 9 || cold == 0) ? (i % hot)
+                                                  : hot + ((i / 10) % cold);
+            }
             size_t offset = page * (size_t)system_page;
             if (!strcmp(mode, "anon")) bytes[offset] = (unsigned char)(p + page);
             checksum += bytes[offset];
