@@ -66,6 +66,7 @@ def generate(root: Path) -> dict[str, list[dict[str, object]]]:
     ax.legend()
     fig.tight_layout()
     fig.savefig(assets / "page_faults.png", dpi=160)
+    fig.savefig(assets / "page_faults.svg")
     plt.close(fig)
 
     for title, rows in (("Контрольная строка", control), ("Аномалия Белади", belady), ("Локальность", locality)):

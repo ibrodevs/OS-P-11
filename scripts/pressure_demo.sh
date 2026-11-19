@@ -12,7 +12,7 @@ fi
 printf 'Baseline with no explicit per-process memory limit (host-dependent)\n'
 ./c/page_faults --mode file --pattern random --mb 192 --passes 4 > results/c_pressure_baseline.csv
 printf 'Pressure test in MemoryMax=96M cgroup; working set=192 MiB\n'
-systemd-run --user --scope -p MemoryMax=96M -- \
+systemd-run --quiet --user --scope -p MemoryMax=96M -- \
   "$(pwd)/c/page_faults" --mode file --pattern random --mb 192 --passes 4 \
   > results/c_pressure_limited.csv
 printf 'Saved: results/c_pressure_baseline.csv and results/c_pressure_limited.csv\n'
