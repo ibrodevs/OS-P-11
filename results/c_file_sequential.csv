@@ -1,0 +1,4 @@
+pass,mode,pattern,mb,seconds,minor_getrusage,major_getrusage,minor_proc,major_proc,checksum
+1,file,sequential,32,0.142599,449,1,442,1,0
+2,file,sequential,32,0.000238,0,0,0,0,0
+3,file,sequential,32,0.000067,0,0,0,0,0

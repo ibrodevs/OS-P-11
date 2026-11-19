@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.venv/
+*.o
+c/page_faults
+c/matrix_bench
+c/*.csv
+*.swp
+.DS_Store

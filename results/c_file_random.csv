@@ -1,0 +1,4 @@
+pass,mode,pattern,mb,seconds,minor_getrusage,major_getrusage,minor_proc,major_proc,checksum
+1,file,random,32,0.029190,523,6,517,6,0
+2,file,random,32,0.000102,0,0,0,0,0
+3,file,random,32,0.000059,0,0,0,0,0

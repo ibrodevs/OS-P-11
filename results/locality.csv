@@ -1,0 +1,7 @@
+pattern,length,frames,FIFO,LRU,Optimal,Clock
+locality_85_percent_hot4,2000,3,1060,983,648,1047
+locality_85_percent_hot4,2000,4,806,692,419,771
+locality_85_percent_hot4,2000,8,383,253,168,293
+uniform_20_pages,2000,3,1686,1698,1293,1686
+uniform_20_pages,2000,4,1591,1583,1116,1586
+uniform_20_pages,2000,8,1202,1196,641,1199

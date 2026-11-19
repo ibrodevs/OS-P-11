@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 460" width="780" height="460">
+<rect width="100%" height="100%" fill="white"/>
+<text x="390" y="26" font-size="18" text-anchor="middle" font-family="Arial">Page faults vs. number of frames</text>
+<path d="M68,390.0 H735" stroke="#ddd"/><text x="55" y="395.0" text-anchor="end" font-size="13">0</text>
+<path d="M68,305.0 H735" stroke="#ddd"/><text x="55" y="310.0" text-anchor="end" font-size="13">5</text>
+<path d="M68,220.0 H735" stroke="#ddd"/><text x="55" y="225.0" text-anchor="end" font-size="13">10</text>
+<path d="M68,135.0 H735" stroke="#ddd"/><text x="55" y="140.0" text-anchor="end" font-size="13">15</text>
+<path d="M68,50.0 H735" stroke="#ddd"/><text x="55" y="55.0" text-anchor="end" font-size="13">20</text>
+<text x="68.0" y="411" font-size="13" text-anchor="middle">1</text>
+<text x="163.3" y="411" font-size="13" text-anchor="middle">2</text>
+<text x="258.6" y="411" font-size="13" text-anchor="middle">3</text>
+<text x="353.9" y="411" font-size="13" text-anchor="middle">4</text>
+<text x="449.1" y="411" font-size="13" text-anchor="middle">5</text>
+<text x="544.4" y="411" font-size="13" text-anchor="middle">6</text>
+<text x="639.7" y="411" font-size="13" text-anchor="middle">7</text>
+<text x="735.0" y="411" font-size="13" text-anchor="middle">8</text>
+<path d="M68,50 V390 H735" fill="none" stroke="#444"/>
+<text x="400" y="441" text-anchor="middle" font-size="14">Frames</text>
+<text transform="translate(19 280) rotate(-90)" text-anchor="middle" font-size="14">Page faults</text>
+<polyline points="68.0,50.0 163.3,135.0 258.6,135.0 353.9,220.0 449.1,237.0 544.4,288.0 639.7,288.0 735.0,288.0" fill="none" stroke="#ad6a52" stroke-width="3"/>
+<circle cx="68.0" cy="50.0" r="3.5" fill="#ad6a52"/>
+<circle cx="163.3" cy="135.0" r="3.5" fill="#ad6a52"/>
+<circle cx="258.6" cy="135.0" r="3.5" fill="#ad6a52"/>
+<circle cx="353.9" cy="220.0" r="3.5" fill="#ad6a52"/>
+<circle cx="449.1" cy="237.0" r="3.5" fill="#ad6a52"/>
+<circle cx="544.4" cy="288.0" r="3.5" fill="#ad6a52"/>
+<circle cx="639.7" cy="288.0" r="3.5" fill="#ad6a52"/>
+<circle cx="735.0" cy="288.0" r="3.5" fill="#ad6a52"/>
+<rect x="535" y="42" width="11" height="11" fill="#ad6a52"/><text x="550" y="52" font-size="12">FIFO</text>
+<polyline points="68.0,50.0 163.3,101.0 258.6,186.0 353.9,254.0 449.1,271.0 544.4,288.0 639.7,288.0 735.0,288.0" fill="none" stroke="#367c97" stroke-width="3"/>
+<circle cx="68.0" cy="50.0" r="3.5" fill="#367c97"/>
+<circle cx="163.3" cy="101.0" r="3.5" fill="#367c97"/>
+<circle cx="258.6" cy="186.0" r="3.5" fill="#367c97"/>
+<circle cx="353.9" cy="254.0" r="3.5" fill="#367c97"/>
+<circle cx="449.1" cy="271.0" r="3.5" fill="#367c97"/>
+<circle cx="544.4" cy="288.0" r="3.5" fill="#367c97"/>
+<circle cx="639.7" cy="288.0" r="3.5" fill="#367c97"/>
+<circle cx="735.0" cy="288.0" r="3.5" fill="#367c97"/>
+<rect x="635" y="42" width="11" height="11" fill="#367c97"/><text x="650" y="52" font-size="12">LRU</text>
+<polyline points="68.0,50.0 163.3,169.0 258.6,237.0 353.9,254.0 449.1,271.0 544.4,288.0 639.7,288.0 735.0,288.0" fill="none" stroke="#447b4f" stroke-width="3"/>
+<circle cx="68.0" cy="50.0" r="3.5" fill="#447b4f"/>
+<circle cx="163.3" cy="169.0" r="3.5" fill="#447b4f"/>
+<circle cx="258.6" cy="237.0" r="3.5" fill="#447b4f"/>
+<circle cx="353.9" cy="254.0" r="3.5" fill="#447b4f"/>
+<circle cx="449.1" cy="271.0" r="3.5" fill="#447b4f"/>
+<circle cx="544.4" cy="288.0" r="3.5" fill="#447b4f"/>
+<circle cx="639.7" cy="288.0" r="3.5" fill="#447b4f"/>
+<circle cx="735.0" cy="288.0" r="3.5" fill="#447b4f"/>
+<rect x="535" y="61" width="11" height="11" fill="#447b4f"/><text x="550" y="71" font-size="12">Optimal</text>
+<polyline points="68.0,50.0 163.3,135.0 258.6,152.0 353.9,237.0 449.1,237.0 544.4,288.0 639.7,288.0 735.0,288.0" fill="none" stroke="#9560a6" stroke-width="3"/>
+<circle cx="68.0" cy="50.0" r="3.5" fill="#9560a6"/>
+<circle cx="163.3" cy="135.0" r="3.5" fill="#9560a6"/>
+<circle cx="258.6" cy="152.0" r="3.5" fill="#9560a6"/>
+<circle cx="353.9" cy="237.0" r="3.5" fill="#9560a6"/>
+<circle cx="449.1" cy="237.0" r="3.5" fill="#9560a6"/>
+<circle cx="544.4" cy="288.0" r="3.5" fill="#9560a6"/>
+<circle cx="639.7" cy="288.0" r="3.5" fill="#9560a6"/>
+<circle cx="735.0" cy="288.0" r="3.5" fill="#9560a6"/>
+<rect x="635" y="61" width="11" height="11" fill="#9560a6"/><text x="650" y="71" font-size="12">Clock</text>
+</svg>
